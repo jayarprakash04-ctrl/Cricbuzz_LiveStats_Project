@@ -9,7 +9,7 @@ import sql_queries
 import crud_operations
 
 
-# ---------------- DATABASE CONNECTION ---------------- #
+
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -17,10 +17,10 @@ conn = mysql.connector.connect(
     database="cricket_db"
 )
 
-# ---------------- DASHBOARD HEADER ---------------- #
+
 st.title("🏏 Cricbuzz LiveStats Dashboard")
 
-# ---------------- SIDEBAR ---------------- #
+
 menu = st.sidebar.selectbox(
     "Select Option",
     [
@@ -43,7 +43,7 @@ st.sidebar.info("""
 
 show_debug = st.sidebar.checkbox("Show Debug Info")
 
-# ---------------- LIVE SCORES ---------------- #
+
 if menu == "Live Scores":
 
 
@@ -150,11 +150,11 @@ if menu == "Live Scores":
                         for innings in scorecard:
                             st.markdown("---")
 
-                            # ── Innings Header ──
+                            
                             innings_id = innings.get("inningsId", "")
                             st.subheader(f"🏏 Innings {innings_id}")
 
-                            # ── Batting Table ──
+                            
                             batsmen = innings.get("batsman", [])
                             if batsmen:
                                 st.markdown("**🏏 Batting**")
@@ -193,7 +193,7 @@ if menu == "Live Scores":
                                     use_container_width=True
                                 )
 
-                            # ── Extras & Total ──
+                            
                             extras = innings.get("extras", {})
                             if extras:
                                 st.markdown(
@@ -221,14 +221,14 @@ if menu == "Live Scores":
     except Exception as e:
         st.error(f"Error: {e}")
 
-# ---------------- PLAYER STATUS ---------------- #
+
 elif menu == "Player Status":
     show_player_status()
 
-# ---------------- SQL ANALYTICS ---------------- #
+
 elif menu == "SQL Analytics":
     sql_queries.show()
 
-# ---------------- CRUD OPERATIONS ---------------- #
+
 elif menu == "CRUD Operations":
     crud_operations.show()
