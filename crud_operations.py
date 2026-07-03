@@ -3,9 +3,9 @@ import mysql.connector
 import pandas as pd
 
 
-# ─────────────────────────────────────────────
+
 # DATABASE CONNECTION
-# ─────────────────────────────────────────────
+
 def get_connection():
     try:
         conn = mysql.connector.connect(
@@ -20,9 +20,9 @@ def get_connection():
         return None
 
 
-# ─────────────────────────────────────────────
+
 # CRUD FUNCTIONS
-# ─────────────────────────────────────────────
+
 def read_players():
     conn = get_connection()
     if conn is None:
@@ -95,9 +95,9 @@ def delete_player(player_id):
         conn.close()
 
 
-# ─────────────────────────────────────────────
+
 # PAGE LAYOUT
-# ─────────────────────────────────────────────
+
 def show():
     st.title("🔧 CRUD Operations")
     st.subheader("📝 Create, Read, Update, Delete Player Records")
@@ -113,7 +113,7 @@ def show():
         ]
     )
 
-    # ── READ ────────────────────────────────────────────────
+    # READ 
     if operation == "📋 Read (View Players)":
         st.subheader("📋 All Players")
 
@@ -133,7 +133,7 @@ def show():
                     mime="text/csv"
                 )
 
-    # ── CREATE ──────────────────────────────────────────────
+    # CREATE 
     elif operation == "➕ Create (Add Player)":
         st.subheader("➕ Add New Player")
 
@@ -163,7 +163,7 @@ def show():
                         st.success(f"✅ Player '{player_name}' added successfully!")
                         st.balloons()
 
-    # ── UPDATE ──────────────────────────────────────────────
+    # UPDATE 
     elif operation == "✏️ Update (Edit Player)":
         st.subheader("✏️ Edit Existing Player")
 
@@ -205,7 +205,7 @@ def show():
                     if success:
                         st.success(f"✅ Player '{player_name}' updated successfully!")
 
-    # ── DELETE ──────────────────────────────────────────────
+    # DELETE 
     elif operation == "🗑️ Delete (Remove Player)":
         st.subheader("🗑️ Remove Player")
 
