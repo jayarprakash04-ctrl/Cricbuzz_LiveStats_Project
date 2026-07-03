@@ -3,9 +3,7 @@ import mysql.connector
 import pandas as pd
 
 
-# ─────────────────────────────────────────────
-# DATABASE CONNECTION
-# ─────────────────────────────────────────────
+
 def get_connection():
     try:
         conn = mysql.connector.connect(
@@ -34,9 +32,7 @@ def run_query(query):
         conn.close()
 
 
-# ─────────────────────────────────────────────
-# ALL 25 SQL QUERIES
-# ─────────────────────────────────────────────
+
 QUERIES = {
 
     "1. List all Indian players": {
@@ -342,9 +338,7 @@ ORDER BY total_runs DESC;
 }
 
 
-# ─────────────────────────────────────────────
-# PAGE LAYOUT
-# ─────────────────────────────────────────────
+
 def show():
     st.title("📊 Cricket SQL Analytics")
     st.markdown("---")
