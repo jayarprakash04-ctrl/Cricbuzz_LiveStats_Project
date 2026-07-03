@@ -27,15 +27,15 @@ def values_to_df(data):
         rows = []
         for v in vals:
             row_values = v.get("values", [])
-            # Make sure row length matches headers length
+            
             if len(row_values) == len(headers):
                 rows.append(row_values)
             elif len(row_values) < len(headers):
-                # Pad with empty strings if row is shorter
+                
                 row_values += [""] * (len(headers) - len(row_values))
                 rows.append(row_values)
             else:
-                # Trim if row is longer
+               
                 rows.append(row_values[:len(headers)])
 
         if not rows:
@@ -51,19 +51,19 @@ def values_to_df(data):
 def safe_dataframe(data, title):
     """Safely display any API data as a table."""
     try:
-        # Try values_to_df first
+        
         df = values_to_df(data)
         if not df.empty:
             st.dataframe(df, use_container_width=True)
             return
 
-        # If that fails, try direct list
+        
         if isinstance(data, list) and len(data) > 0:
             df = pd.DataFrame(data)
             st.dataframe(df, use_container_width=True)
             return
 
-        # If data is a dict with different structure
+       
         if isinstance(data, dict):
             for key, value in data.items():
                 if isinstance(value, list) and len(value) > 0:
@@ -90,7 +90,7 @@ def show_player_status():
         st.info("Enter a player name to search.")
         return
 
-    # ── Search Player ──────────────────────────────────────
+    
     try:
         search = call_api("/stats/v1/player/search", {"plrN": player_name})
     except Exception as e:
@@ -107,7 +107,7 @@ def show_player_status():
     player = plist[names.index(selected)]
     pid = player["id"]
 
-    # ── Player Info ────────────────────────────────────────
+    
     try:
         info = call_api(f"/stats/v1/player/{pid}")
     except Exception as e:
@@ -116,7 +116,7 @@ def show_player_status():
 
     st.markdown("---")
 
-    # Profile
+    
     col1, col2 = st.columns([1, 2])
     with col1:
         if info.get("image"):
@@ -138,7 +138,7 @@ def show_player_status():
 
     st.markdown("---")
 
-    # ── Career Stats ───────────────────────────────────────
+   
     st.subheader("📊 Career Statistics")
     try:
         career_data = call_api(f"/stats/v1/player/{pid}/career")
@@ -146,7 +146,7 @@ def show_player_status():
     except Exception as e:
         st.warning(f"Career stats not available: {e}")
 
-    # ── Batting Stats ──────────────────────────────────────
+    
     st.subheader("🏏 Batting Statistics")
     try:
         bat_data = call_api(f"/stats/v1/player/{pid}/batting")
@@ -154,7 +154,7 @@ def show_player_status():
     except Exception as e:
         st.warning(f"Batting stats not available: {e}")
 
-    # ── Bowling Stats ──────────────────────────────────────
+    
     st.subheader("🎳 Bowling Statistics")
     try:
         bowl_data = call_api(f"/stats/v1/player/{pid}/bowling")
@@ -162,7 +162,7 @@ def show_player_status():
     except Exception as e:
         st.warning(f"Bowling stats not available: {e}")
 
-    # ── Recent Batting ─────────────────────────────────────
+ 
     if "recentBatting" in info:
         st.subheader("🕐 Recent Batting")
         try:
@@ -172,7 +172,7 @@ def show_player_status():
             safe_rows = []
             for r in rows:
                 vals = r.get("values", [])
-                # Fix column mismatch
+                
                 if len(vals) > len(headers):
                     vals = vals[:len(headers)]
                 elif len(vals) < len(headers):
@@ -184,7 +184,7 @@ def show_player_status():
         except Exception as e:
             st.warning(f"Recent batting not available: {e}")
 
-    # ── Recent Bowling ─────────────────────────────────────
+   
     if "recentBowling" in info:
         st.subheader("🕐 Recent Bowling")
         try:
