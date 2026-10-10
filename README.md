@@ -218,9 +218,9 @@ Toss advantage, most economical bowlers, batting consistency (std. deviation), f
 
 ## 👤 Author
 
-**Jp**
-Computer Science Student · GUVI × HCL Data Science Program
-🔗 GitHub: `<your-github-link>` · LinkedIn: `<your-linkedin-link>`
+Jayaprakash R
+Computer Science Student 
+🔗 LinkedIn: https://www.linkedin.com/in/jaya-prakash-0b791a361
 
 ---
 
