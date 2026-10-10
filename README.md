@@ -219,7 +219,7 @@ Toss advantage, most economical bowlers, batting consistency (std. deviation), f
 ## 👤 Author
 
 Jayaprakash R
-Computer Science Student 
+
 🔗 LinkedIn: https://www.linkedin.com/in/jaya-prakash-0b791a361
 
 ---
